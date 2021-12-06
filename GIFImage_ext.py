@@ -205,14 +205,3 @@ class GIFImage(object):
         self.cur = 0
         self.ptime = time.time()
         self.reversed = False
-
-    def copy(self):
-        new = GIFImage(self.filename)
-        new.running = self.running
-        new.breakpoint = self.breakpoint
-        new.startpoint = self.startpoint
-        new.cur = self.cur
-        new.ptime = self.ptime
-        new.reversed = self.reversed
-        new.fps_scale = self.fps_scale
-        return new
