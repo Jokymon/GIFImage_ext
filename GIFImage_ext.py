@@ -1,7 +1,5 @@
-import PIL
 from PIL import Image
 import pygame
-from pygame.locals import *
 import time
 
 class GIFImage(object):
@@ -92,7 +90,7 @@ class GIFImage(object):
                 pi.set_palette(palette)
                 if "transparency" in image.info:
                     pi.set_colorkey(image.info["transparency"])
-                pi2 = pygame.Surface(image.size, SRCALPHA)
+                pi2 = pygame.Surface(image.size, pygame.SRCALPHA)
                 if cons:
                     for i in self.frames:
                         pi2.blit(i[0], (0,0))
