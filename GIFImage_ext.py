@@ -9,11 +9,8 @@ class GIFImage(object):
         self.filename = filename
         self.image = Image.open(filename)
         self.original_size = self.image.size
-#Added by NS  *********************
-        #self.frames = []
         self.fps_scale = 1
         self.img_scale = 1
-#**********************************       
         self.get_frames()
 
         self.cur = 0
@@ -30,9 +27,7 @@ class GIFImage(object):
 
     def get_frames(self):
         image = self.image
-        #Added by NS  ************
         self.frames = []
-        #*************************
         pal = image.getpalette()
         base_palette = []
         for i in range(0, len(pal), 3):
@@ -61,9 +56,7 @@ class GIFImage(object):
 
                 duration *= .001 #convert to milliseconds!
                 
-                #Added by NS  ************
                 duration *= self.fps_scale
-                #*************************
                 
                 cons = False
 
@@ -123,7 +116,6 @@ class GIFImage(object):
                         self.cur = self.startpoint
 
                 self.ptime = time.time()
-        #Added by NS  **************************************
         if self.img_scale == 1:
             surf = self.frames[self.cur][0]
         else:
@@ -131,8 +123,6 @@ class GIFImage(object):
                                 (int(self.image.width * self.img_scale),
                                  int(self.image.height * self.img_scale)))
         screen.blit(surf, pos)
-        #screen.blit(self.frames[self.cur][0], pos)
-        #***************************************************
 
     def seek(self, num):
         self.cur = num
@@ -158,7 +148,6 @@ class GIFImage(object):
     def pause(self):
         self.running = False
 
-#added by NS  ********************************
     def next_frame(self):
         if self.running:
             self.pause()
@@ -193,7 +182,6 @@ class GIFImage(object):
 
     def reset_scale(self):
         self.img_scale = 1
-#*********************************************
 
     def play(self):
         self.running = True
@@ -226,7 +214,5 @@ class GIFImage(object):
         new.cur = self.cur
         new.ptime = self.ptime
         new.reversed = self.reversed
-        #Added by NS  ****
         new.fps_scale = self.fps_scale
-        #*****************
         return new
