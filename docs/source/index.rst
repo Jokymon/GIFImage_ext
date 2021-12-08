@@ -1,20 +1,57 @@
-.. Pygame Animated GIF Sprite documentation master file, created by
-   sphinx-quickstart on Wed Dec  8 10:04:07 2021.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Pygame Animated GIF Sprite
+==========================
 
-Welcome to Pygame Animated GIF Sprite's documentation!
-======================================================
+Simple usage
+------------
+
+To get started, install the package for your project
+
+.. code-block:: console
+
+   pip install pygame-animatedgif
+
+To use the class in your project first import the corresponding class
+
+.. literalinclude:: ../../example/example.py
+   :lines: 1, 3
+
+Now you can create instances of the animated sprites in the following way
+
+.. literalinclude:: ../../example/example.py
+   :dedent:
+   :lines: 38
+
+The first parameter given to the constructor are the x, y coordinates on
+your `pygame` screen where the sprite should be placed. The second
+parameter is a string giving the absolute or relative path to an animated
+GIF file.
+
+To automatically handle drawing of the sprite, it must be added to a
+sprite group:
+
+.. literalinclude:: ../../example/example.py
+   :dedent:
+   :lines: 47-48
+
+And finally, in the main game loop you only need to take care of updating
+drawing the sprite group once every frame.
+
+.. literalinclude:: ../../example/example.py
+   :dedent:
+   :lines: 35-36, 55, 64-68
+
+Complete API
+------------
+.. autoclass:: pygame_animatedgif.AnimatedGifSprite
+   :members:
+   :special-members: __init__
+
+
+Contents
+========
+
+:ref:`Keyword Index <genindex>`, :ref:`Search Page <search>`
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

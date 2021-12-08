@@ -6,6 +6,14 @@ from PIL import Image
 class AnimatedGifSprite(pygame.sprite.Sprite):
     """A Sprite-derived class that handles animation of animated GIFs"""
     def __init__(self, position, filename):
+        """Construct a new AnimatedGifSprite object.
+
+        By default playback of the animation is active and with every call to
+        the :func:`update`-function the correct next frame is selected.
+
+        :param tuple position: A tuple with two elements specifying the x and y 
+            coordinates where the sprite will be placed
+        :param string filename: Path to an animated GIF file"""
         super().__init__()
 
         self.filename = filename
@@ -105,7 +113,14 @@ class AnimatedGifSprite(pygame.sprite.Sprite):
             pass
         return frames
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
+        """This function needs to be called once for every frame to actually see any animation.
+
+        The function signature is written such that :class:`AnimatedGifSprite` objects can be
+        added to a :class:`pygame.sprite.Group` and :func:`update` can be called on the group with
+        any parameters useful for other objects in that group without crashing the
+        :class:`AnimatedGifSprite`-objects. The class :class:`AnimatedGifSprite` does not need any
+        parameters for the call to :func:`update`."""
         if self.running:
             if time.time() - self.ptime > self.frames[self.cur][1]:
                 if self.reversed:
@@ -126,6 +141,12 @@ class AnimatedGifSprite(pygame.sprite.Sprite):
                                  int(self.rect.height * self.scaling_factor)))
 
     def seek(self, num):
+        """Directly jump to the frame with the given numbers.
+
+        :param int num: The frame number to jump to. Frame numbers outside the
+            available frame number count will be capped to be inside the valid
+            range.
+        """
         self.cur = num
         if self.cur < 0:
             self.cur = 0
@@ -146,10 +167,22 @@ class AnimatedGifSprite(pygame.sprite.Sprite):
         self.startpoint = start
         self.breakpoint = end
 
+    def play(self):
+        """Start playback of the animation."""
+        self.running = True
+
     def pause(self):
+        """Stop playback of the animation."""
         self.running = False
 
     def next_frame(self):
+        """Step to next frame in the animation.
+
+        When this function is called while the animation is playing, the
+        playback is stopped.
+
+        Once the last frame is reached, frames are wrapped around and the
+        next frame from the start is shown again."""
         if self.running:
             self.pause()
         else:
@@ -158,6 +191,13 @@ class AnimatedGifSprite(pygame.sprite.Sprite):
                 self.cur = self.startpoint
 
     def prev_frame(self):
+        """Step to previous frame in the animation.
+
+        When this function is called while the animation is playing, the
+        playback is stopped.
+
+        Once the first frame is reached, frames are wrapped around and the
+        next frame from the end is shown."""
         if self.running:
             self.pause()
         else:
@@ -179,13 +219,15 @@ class AnimatedGifSprite(pygame.sprite.Sprite):
         self.seek(self.cur)
 
     def scale(self, scale_factor):
+        """Scale the animation by the given scaling factor.
+
+        :param double scale_factor The factor by which all the frame of the
+            animation are scaled."""
         self.scaling_factor = scale_factor
 
     def reset_scale(self):
+        """Reset the scaling factor to 1.0"""
         self.scaling_factor = 1
-
-    def play(self):
-        self.running = True
 
     def rewind(self):
         self.seek(0)
