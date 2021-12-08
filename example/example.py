@@ -1,6 +1,6 @@
 import pygame
 import pygame.gfxdraw
-from AnimatedGifSprite import *
+from pygame_animatedgif import AnimatedGifSprite
 
 
 class Button(pygame.sprite.Sprite):

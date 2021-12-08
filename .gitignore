@@ -10,3 +10,7 @@ pyvenv.cfg
 
 # temporary editor files
 *.sw[op]
+
+# packaging artifacts
+dist/
+*.egg-info/
