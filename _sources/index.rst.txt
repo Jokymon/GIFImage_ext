@@ -46,6 +46,11 @@ Complete API
    :members:
    :special-members: __init__
 
+Acknowledgments
+===============
+
+ * RB[0] - `Original implementation <https://www.pygame.org/project/1039/1829>`_ of a Python class for animated GIFs
+ * `Nick Sandau <https://github.com/nicksandau>`_ - Addition of several methods for a richer API in the `extended GIFImage class <https://github.com/nicksandau/GIFImage_ext>`_
 
 Contents
 ========
