@@ -1,4 +1,7 @@
 # GIFImage_ext
+
+[![GitHub Pages available](https://img.shields.io/static/v1?label=GitHub%20Pages&message=available&color=green&logo=github)](https://jokymon.github.io/GIFImage_ext/)
+
 Extension of the GIFImage library on pygame.org written by Matthew Roe.
 
 I found it here: http://pygame.org/project-GIFImage-1039-.html
@@ -10,27 +13,27 @@ it's easy to see what was there vs. what is there now.
 
 methods added:
 
-next_frame()
+`next_frame()`
 
-    -pauses the animation if it is currently playing
-    -advances to next frame if the animation is paused
-    -goes to first frame if the current frame = frames[-1]
+ - pauses the animation if it is currently playing
+ - advances to next frame if the animation is paused
+ - goes to first frame if the current frame = frames[-1]
  
-previous_frame()
+`previous_frame()`
 
-    -inverse of next_frame()
+ - inverse of next_frame()
  
-slow_down()
+`slow_down()`
 
-    -slows the playback speed by increasing the 'duration' variable
+ - slows the playback speed by increasing the 'duration' variable
      
-speed_up()
+`speed_up()`
 
-    -increases the playback speed by decreasing the 'duration' variable
+ - increases the playback speed by decreasing the 'duration' variable
  
-scale(scale_factor)
+`scale(scale_factor)`
 
-    -scale_factor is added to the image_scale variable - pass positive numbers to
+ - scale_factor is added to the image_scale variable - pass positive numbers to
      increase the image size, negative numbers to decrease size
          gif_image.scale(.05) #increases image size by 5%
          gif_image.scale(-.05) #decreases image size by 5%
@@ -42,13 +45,23 @@ scale(scale_factor)
     -the transformed image is assigned to a new surface which is blitted to the screen
      so that the original image quality is retained
    
-reset_scale()
+`reset_scale()`
 
-    -resets the img_scale value to 1
+ - resets the img_scale value to 1
     
 Persistant Problems:
 
-    -there is still a pallet handling issue as described on the pygame.org website.
+ - there is still a pallet handling issue as described on the pygame.org website.
      Time permitting, I'll look into this, but I'm no expert on the GIF image format 
      and this was really a one-off kind of thing for a quick and dirty prototype for a 
      larger project.
+
+## Contributing
+
+Bug reports and feature requests can be entered in the Issues menu.
+
+To ask questions about the project, you can create a new issue in the Issues menu with the label ~question.
+
+To contribute any changes simply clone the project on GitHub:
+https://github.com/Jokymon/GIFImage_ext, push your changes to your own GitHub
+project and send a pull request.
